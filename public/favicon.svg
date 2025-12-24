@@ -1,0 +1,32 @@
+<svg
+  width="66"
+  height="70"
+  viewBox="1 1 40 40"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <rect
+	x="0"
+	y="0"
+	width="18"
+	height="18"
+	rx="2"
+	fill="#3ad24d"
+	data-astro-cid-3ef6ksr2=""></rect>
+  <rect
+	x="22"
+	y="0"
+	width="18"
+	height="18"
+	rx="2"
+	fill="#00a6a0"
+	data-astro-cid-3ef6ksr2=""></rect>
+  <rect
+	x="22"
+	y="22"
+	width="18"
+	height="18"
+	rx="2"
+	fill="#19b7b3"
+	data-astro-cid-3ef6ksr2=""></rect>
+</svg>

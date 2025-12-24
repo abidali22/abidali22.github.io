@@ -1,0 +1,70 @@
+---
+// Layout.astro
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
+import { ClientRouter } from "astro:transitions";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <script is:inline>
+      (function () {
+        const html = document.documentElement;
+
+        // Apply saved theme BEFORE page renders
+        const saved = localStorage.getItem("theme");
+        if (
+          saved === "dark" ||
+          (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          html.classList.add("dark");
+        } else {
+          html.classList.remove("dark");
+        }
+
+        // Toggle on button click
+        document.addEventListener("click", (e) => {
+          const btn = e.target.closest("[data-theme-toggle]");
+          if (!btn) return;
+
+          html.classList.toggle("dark");
+          localStorage.setItem(
+            "theme",
+            html.classList.contains("dark") ? "dark" : "light",
+          );
+        });
+
+        // Sync between tabs
+        window.addEventListener("storage", (e) => {
+          if (e.key === "theme") {
+            if (e.newValue === "dark") html.classList.add("dark");
+            else html.classList.remove("dark");
+          }
+        });
+
+        // ⭐ Fix: Re-apply theme after Astro swaps the page (no full reload)
+        document.addEventListener("astro:after-swap", () => {
+          const savedTheme = localStorage.getItem("theme");
+          if (savedTheme === "dark") html.classList.add("dark");
+          else html.classList.remove("dark");
+        });
+      })();
+    </script>
+
+    <SEO title={title} />
+    <ClientRouter />
+  </head>
+  <body
+    class="min-h-screen bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark transition-colors duration-300"
+  >
+    <Header />
+    <main class="min-h-screen">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

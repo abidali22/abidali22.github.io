@@ -1,0 +1,76 @@
+---
+const services = [
+  {
+    title: "UI/UX",
+    description:
+      "Experts in delightful design and seamless experience engineering for functional interfaces.",
+    icon: "🎨",
+  },
+  {
+    title: "Platform Engineering",
+    description:
+      "Enables a technology ecosystem that speeds up your development efficiency.",
+    icon: "⚙️",
+  },
+  {
+    title: "Product Engineering",
+    description:
+      "End-to-end product development using cutting-edge technologies.",
+    icon: "🧩",
+  },
+  {
+    title: "IT Operations Management Services",
+    description:
+      "Optimize and streamline your IT operations for performance and reliability.",
+    icon: "🖥️",
+  },
+  {
+    title: "Cloud Native Architectures",
+    description:
+      "Leverage cloud-native solutions for scalability and flexibility.",
+    icon: "☁️",
+  },
+  {
+    title: "IoT, IIoT and Industry 4.0",
+    description:
+      "Integrating devices and data for smart industrial operations.",
+    icon: "🔗",
+  },
+  {
+    title: "Big Data and Data Analytics",
+    description: "Harness data insights for smarter business decisions.",
+    icon: "📊",
+  },
+  {
+    title: "GIS / Fleet Management",
+    description: "Track and manage fleets with geospatial intelligence.",
+    icon: "🗺️",
+  },
+  {
+    title: "Strategic Consulting Management",
+    description:
+      "Expert consulting to shape your digital transformation strategy.",
+    icon: "💼",
+  },
+];
+---
+
+<section class="py-16 bg-white text-center">
+  <h2 class="text-2xl md:text-3xl font-bold mb-10 text-gray-800">
+    How We Can Help You?
+  </h2>
+
+  <div class="grid gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+    {
+      services.map((service) => (
+        <div class="border border-blue-500 rounded-lg p-6 flex flex-col items-center text-center hover:bg-blue-50 transition duration-300 hover:shadow-lg">
+          <div class="text-5xl mb-4 text-blue-600">{service.icon}</div>
+          <h3 class="text-lg font-semibold mb-2 text-gray-800">
+            {service.title}
+          </h3>
+          <p class="text-sm text-gray-600 mb-4">{service.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

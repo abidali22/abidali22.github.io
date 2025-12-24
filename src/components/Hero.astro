@@ -1,0 +1,117 @@
+---
+import { COMPANY_NAME } from "../consts";
+import { Image } from "astro:assets";
+import reactLogo from "../assets/react.png";
+import nodeLogo from "../assets/node.png";
+import pythonLogo from "../assets/python.png";
+import awsLogo from "../assets/aws.png";
+import flutterLogo from "../assets/flutter.png";
+import tfLogo from "../assets/tf.jpg";
+
+const techStack = [
+    { name: "React", logo: reactLogo },
+    { name: "Node.js", logo: nodeLogo },
+    { name: "Python", logo: pythonLogo },
+    { name: "AWS", logo: awsLogo },
+    { name: "Flutter", logo: flutterLogo },
+    { name: "TensorFlow", logo: tfLogo },
+];
+---
+
+<section
+    id="home"
+    class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white dark:bg-slate-900 overflow-hidden"
+>
+    <!-- Simplified Background -->
+    <div class="absolute inset-0 bg-slate-50 dark:bg-slate-900 -z-10"></div>
+    <div class="absolute inset-0 opacity-10 -z-10">
+        <div
+            class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-400 rounded-full blur-3xl"
+        >
+        </div>
+        <div
+            class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400 rounded-full blur-3xl"
+        >
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+        <!-- Badge -->
+        <div
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 dark:bg-slate-800 border border-cyan-100 dark:border-slate-700 mb-8"
+        >
+            <span class="flex h-2 w-2 rounded-full bg-green-500"></span>
+            <span class="text-sm font-medium text-slate-600 dark:text-slate-300"
+                >Available for new projects</span
+            >
+        </div>
+
+        <!-- Headline -->
+        <h1
+            class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight"
+        >
+            Building <span class="text-cyan-600 dark:text-cyan-400"
+                >Scalable Software</span
+            >
+            <br class="hidden md:block" /> for the Future.
+        </h1>
+
+        <!-- Subheadline -->
+        <p
+            class="mt-4 text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed"
+        >
+            {COMPANY_NAME} is a premier software house engineering high-performance
+            web, mobile, and AI solutions. Transform your vision into reality with
+            our expert team of developers.
+        </p>
+
+        <!-- CTAs -->
+        <div
+            class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+            <a
+                href="/#contact"
+                class="px-8 py-4 text-lg font-bold rounded-full text-white bg-[#06b6d4] hover:bg-[#0891b2] shadow-xl transition-all block"
+            >
+                Start Your Project
+            </a>
+            <a
+                href="/services"
+                class="px-8 py-4 text-lg font-semibold rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all block"
+            >
+                Explore Services
+            </a>
+        </div>
+
+        <!-- Tech Stack Strip -->
+        <div
+            class="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800"
+        >
+            <p
+                class="text-sm font-medium text-slate-400 uppercase tracking-widest mb-10"
+            >
+                Powering products with modern tech
+            </p>
+            <div class="flex flex-wrap justify-center gap-12">
+                {
+                    techStack.map((tech) => (
+                        <div class="flex flex-col items-center gap-4 group">
+                            <span class="text-xl font-bold text-slate-400 dark:text-slate-600 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                                {tech.name}
+                            </span>
+                            <div class="w-12 h-12 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110">
+                                <Image
+                                    src={tech.logo}
+                                    alt={`${tech.name} logo`}
+                                    width={48}
+                                    height={48}
+                                    class="object-contain"
+                                />
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

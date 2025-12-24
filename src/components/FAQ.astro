@@ -1,0 +1,137 @@
+---
+const faqs = [
+    {
+        question: "Who are you guys?",
+        answer: "We are a team of passionate developers, designers, and project managers dedicated to building high-quality software solutions. Our goal is to help businesses grow by providing top-notch technical expertise and beautiful design.",
+    },
+    {
+        question: "How can we work together?",
+        answer: "You can start by contacting us through our website. We'll verify your requirements and propose a suitable engagement model, whether it's a fixed-price project or a dedicated team.",
+    },
+    {
+        question: "Will you build my product for equity?",
+        answer: "Generally, we operate on a fee-for-service basis. However, we may consider equity partnerships for exceptional ideas with strong validation, on a case-by-case basis.",
+    },
+    {
+        question: "Do you offer custom packages?",
+        answer: "Yes! We understand that every project is unique. The 'Project based' option allows us to create a custom scope and quote tailored specifically to your needs.",
+    },
+    {
+        question: "What is your refund policy?",
+        answer: "We strive for complete client satisfaction. Our contracts typically include clear milestones and deliverables. If we fail to meet the agreed-upon criteria, we have provisions for refunds or remediation as detailed in our service agreement.",
+    },
+    {
+        question: "What if I want to stop working with you?",
+        answer: "You can pause or cancel your subscription at any time. We believe in earning your business every month, so there are no long-term lock-ins for our subscription services.",
+    },
+];
+---
+
+<style>
+    .faq-content {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition:
+            max-height 0.6s ease,
+            opacity 0.5s ease;
+    }
+
+    .faq-content.expanded {
+        max-height: 500px; /* adjust based on your max content height */
+        opacity: 1;
+    }
+</style>
+
+<section
+    id="faq"
+    class="py-24 bg-white dark:bg-background-dark transition-colors duration-300"
+>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2
+                class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight"
+            >
+                You have a lot of <span class="text-primary-DEFAULT"
+                    >questions</span
+                >, and we have answers for a most popular and common once.
+            </h2>
+        </div>
+
+        <div class="space-y-4">
+            {
+                faqs.map((faq, index) => (
+                    <div class="border-b border-gray-100 dark:border-gray-800 last:border-0">
+                        <button
+                            class="faq-button w-full py-2 flex justify-between items-center text-left focus:outline-none group"
+                            aria-expanded="false"
+                        >
+                            <span class="text-lg font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary-DEFAULT dark:group-hover:text-primary-light transition-colors duration-200">
+                                {faq.question}
+                            </span>
+                            <span class="ml-6 flex-shrink-0 text-slate-400 dark:text-slate-500 group-hover:text-primary-DEFAULT dark:group-hover:text-primary-light transition-colors duration-200">
+                                <svg
+                                    class="w-5 h-5 transform transition-transform duration-200"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                    />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                                {faq.answer}
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    const faqButtons = document.querySelectorAll(".faq-button");
+
+    faqButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+            const content = button.nextElementSibling as HTMLElement;
+            const icon = button.querySelector("svg");
+
+            // Close all other FAQs
+            faqButtons.forEach((otherButton) => {
+                otherButton.setAttribute("aria-expanded", "false");
+                const otherContent =
+                    otherButton.nextElementSibling as HTMLElement;
+                const otherIcon = otherButton.querySelector("svg");
+
+                otherContent.classList.remove("expanded");
+                otherIcon!.innerHTML =
+                    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />';
+            });
+
+            // Toggle current FAQ
+            if (isExpanded) {
+                // Close current
+                button.setAttribute("aria-expanded", "false");
+                content.classList.remove("expanded");
+                icon!.innerHTML =
+                    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />';
+            } else {
+                // Open current
+                button.setAttribute("aria-expanded", "true");
+                content.classList.add("expanded");
+                icon!.innerHTML =
+                    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />';
+            }
+        });
+    });
+</script>
