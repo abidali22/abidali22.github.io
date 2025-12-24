@@ -3,7 +3,9 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://triasoft.io', // Update this to your actual production URL
+  output: "static",
+  site: 'https://abidali22.github.io/', // Update this to your actual production URL
+  base: 'abidali22.github.io',
   integrations: [tailwind(), sitemap()],
   devToolbar: {
     enabled: false
