@@ -5,7 +5,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   output: "static",
   site: 'https://abidali22.github.io/', // Update this to your actual production URL
-  base: 'abidali22.github.io',
   integrations: [tailwind(), sitemap()],
   devToolbar: {
     enabled: false
