@@ -98,40 +98,51 @@ const faqs = [
 </section>
 
 <script>
-    const faqButtons = document.querySelectorAll(".faq-button");
+    document.addEventListener("astro:page-load", () => {
+        const faqButtons = document.querySelectorAll(".faq-button");
 
-    faqButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const isExpanded = button.getAttribute("aria-expanded") === "true";
-            const content = button.nextElementSibling as HTMLElement;
-            const icon = button.querySelector("svg");
+        faqButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const isExpanded =
+                    button.getAttribute("aria-expanded") === "true";
+                const content = button.nextElementSibling as HTMLElement;
+                const icon = button.querySelector("svg");
 
-            // Close all other FAQs
-            faqButtons.forEach((otherButton) => {
-                otherButton.setAttribute("aria-expanded", "false");
-                const otherContent =
-                    otherButton.nextElementSibling as HTMLElement;
-                const otherIcon = otherButton.querySelector("svg");
+                // Close all other FAQs
+                faqButtons.forEach((otherButton) => {
+                    if (otherButton !== button) {
+                        otherButton.setAttribute("aria-expanded", "false");
+                        const otherContent =
+                            otherButton.nextElementSibling as HTMLElement;
+                        const otherIcon = otherButton.querySelector("svg");
 
-                otherContent.classList.remove("expanded");
-                otherIcon!.innerHTML =
-                    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />';
+                        otherContent.classList.remove("expanded");
+                        if (otherIcon) {
+                            otherIcon.innerHTML =
+                                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />';
+                        }
+                    }
+                });
+
+                // Toggle current FAQ
+                if (isExpanded) {
+                    // Close current
+                    button.setAttribute("aria-expanded", "false");
+                    content.classList.remove("expanded");
+                    if (icon) {
+                        icon.innerHTML =
+                            '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />';
+                    }
+                } else {
+                    // Open current
+                    button.setAttribute("aria-expanded", "true");
+                    content.classList.add("expanded");
+                    if (icon) {
+                        icon.innerHTML =
+                            '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />';
+                    }
+                }
             });
-
-            // Toggle current FAQ
-            if (isExpanded) {
-                // Close current
-                button.setAttribute("aria-expanded", "false");
-                content.classList.remove("expanded");
-                icon!.innerHTML =
-                    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />';
-            } else {
-                // Open current
-                button.setAttribute("aria-expanded", "true");
-                content.classList.add("expanded");
-                icon!.innerHTML =
-                    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />';
-            }
         });
     });
 </script>
